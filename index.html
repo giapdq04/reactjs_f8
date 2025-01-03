@@ -15,86 +15,46 @@
 <div id="root"></div>
 
 <script type="text/babel">
-    // const postsList = [
-    //     {
-    //         id: 1,
-    //         title: 'ReactJS',
-    //         description: 'ReactJS is a JavaScript library for building user interfaces',
-    //         time: '2021-01-01'
-    //     },
-    //     {
-    //         id: 2,
-    //         title: 'HTML',
-    //         description: 'HTML is the standard markup language for documents designed to be displayed in a web browser',
-    //         time: '2024-01-01'
-    //     },
-    //     {
-    //         id: 3,
-    //         title: 'CSS',
-    //         description: 'CSS is a style sheet language used for describing the presentation of a document written in a markup language like HTML',
-    //         time: '2022-01-01'
-    //     }
-    // ]
 
-    const coursesList = [
-        {
-            "id": 15,
-            "title": "HTML CSS Pro",
-            "description": "Khóa học HTML CSS Pro phù hợp cho cả người mới bắt đầu, lên tới 8 dự án trên Figma, 300+ bài tập và flashcards, tặng 3+ games, tặng 20+ Figma để thực hành, cộng đồng học viên Pro nhiệt tình hỗ trợ nhau, mua một lần học mãi mãi.",
-            "image_url": "https://files.fullstack.edu.vn/f8-prod/courses/15/62f13d2424a47.png",
-            "students_count": 0,
-        },
-        {
-            "id": 27,
-            "title": "Ngôn ngữ Sass",
-            "description": "Đây là một khóa học nhỏ được tách ra từ 2 chương học trong khóa HTML CSS Pro. Kiến thức về Sass trong khóa này bạn có thể áp dụng ngay vào các dự án của bạn.",
-            "image_url": "https://files.fullstack.edu.vn/f8-prod/courses/27/64e184ee5d7a2.png",
-            "students_count": 0
-        },
-        {
-            "id": 19,
-            "title": "JavaScript Pro",
-            "description": "Khóa học JavaScript Pro này là nền tảng vững chắc để học tiếp React, Vue.js, Node.js, v.v. Mục tiêu là giúp bạn có thể làm chủ JavaScript thông qua việc am hiểu cơ chế hoạt động của ngôn ngữ.",
-            "image_url": "https://files.fullstack.edu.vn/f8-prod/courses/19/66aa28194b52b.png",
-            "students_count": 10
+    const Button = ({title, href, onClick}) => {
+        let Component = 'button'
+        const props = {}
+
+        if (href) {
+            props.href = href
+            Component = 'a'
         }
-    ]
 
-    // const PostItem = (props) => {
-    //     console.log(props)
-    //     return (
-    //         <div className="post-item">
-    //             <h2>{props.title}</h2>
-    //             <p>{props.description}</p>
-    //             <p>{props.time}</p>
-    //         </div>
-    //     )
-    // }
+        if (onClick) {
+            props.onClick = onClick
+        }
 
+        return (
+            <Component {...props}>{title}</Component>
+        )
+    }
 
-    const CourseItem = ({
-                            title = 'title',
-                            description = 'description',
-                            image_url = 'https://d1hjkbq40fs2x4.cloudfront.net/2017-08-21/files/landscape-photography_1645-t.jpg',
-                            students_count = 'students_count'
-                        }) => (
-        <div>
-            <h2>Khóa học: {title}</h2>
-            <p>Mô tả: {description}</p>
-            <img src={image_url} alt={title}/>
-            <p>Học viên: {students_count}</p>
-        </div>
+    const Input = ({label, ...inputProps}) => {
+        return (
+            <div>
+                <label>{label}</label>
+                <input {...inputProps}/>
+            </div>
+        )
+    }
+
+    const App = () => {
+        return (
+            <div className="courses-list">
+                <Input label="Name" type="radio" placeholder="Enter name"/>
+            </div>
+        )
+
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+        <App/>
     )
-
-    const app = (
-        <div className="courses-list">
-            {
-                coursesList.map(item => <CourseItem key={item.id} {...item} />)
-            }
-        </div>
-    )
-
-    ReactDOM.createRoot(document.getElementById('root')).render(app)
 </script>
 </body>
 
